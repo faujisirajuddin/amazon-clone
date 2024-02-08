@@ -1,12 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    // products:[],
     userInfo:null
 }
 
-export const amazonSlice = createSlice({
-    name:"amazon",
+export const userSlice = createSlice({
+    name:"user",
     initialState,
     reducers: {
       setUserInfo:(state,action)=>{
@@ -18,5 +17,5 @@ export const amazonSlice = createSlice({
     },
 })
 
-export const {setUserInfo,userSignOut} = amazonSlice.actions
-export default amazonSlice.reducer
+export const {setUserInfo,userSignOut} = userSlice.actions
+export default userSlice.reducer

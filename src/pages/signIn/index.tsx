@@ -10,7 +10,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { RotatingLines } from "react-loader-spinner";
 import { motion } from "framer-motion"
 import { useDispatch } from "react-redux";
-import { setUserInfo } from "@/redux/amazonSlice";
+import { setUserInfo } from "@/redux/userSlice";
 
 
 const signInSchema = Yup.object({
@@ -73,7 +73,9 @@ const SignIn = () => {
         <div className="w-full">
             <div className="w-full bg-gray-100 ph-10">
                 <form onSubmit={handleSubmit} className="w-[370px] mx-auto flex flex-col items-center py-8">
-                    <Image className="w-32" src={darkLogo} alt="signIn Logo" />
+                    <Image 
+                    onClick = {()=>router.push("/")}
+                    className="w-32 cursor-pointer" src={darkLogo} alt="signIn Logo" />
                     <div className="w-full border border-zinc-200 p-6">
                         <h2 className="text-3xl font-medium mb-4">Sign in</h2>
                         <div className="flex flex-col gap-3">

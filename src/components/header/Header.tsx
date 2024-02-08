@@ -9,11 +9,13 @@ import { useSelector } from "react-redux";
 import { MdArrowDropDown } from "react-icons/md";
 import { useState } from "react";
 import { allItems } from "../footer/constant"
+import { StateProps } from "@/type";
 
 
 const Header = () => {
 
-    const userInfo = useSelector((state: any) => state.amazonReducer.userInfo)
+    const userInfo = useSelector((state: StateProps) => state.userReducer.userInfo)
+    const { productData, favoriteData } = useSelector((state: StateProps) => state.productReducer)
     const [showAll, setShowAll] = useState(false)
     return (
         <>
@@ -69,8 +71,7 @@ const Header = () => {
                         </span>
                     </div>
                     {/* signin */}
-                    <Link href="/signIn">
-                        <div className="px-2 border border-transparent hover:border-white cursor-pointer duration-300 justify-center h-[70%] text-xs text-gray-100 flex flex-col">
+                    <Link href="/signIn" className="px-2 border border-transparent hover:border-white cursor-pointer duration-300 justify-center h-[70%] text-xs text-gray-100 flex flex-col">
                             {
                                 userInfo ? (
                                     <p className="text-sm text-gray-100 font-medium">{userInfo.userName}</p>
@@ -82,20 +83,22 @@ const Header = () => {
                                 Account & Lists
                                 <span><BiCaretDown /></span>
                             </p>
-                        </div>
                     </Link>
                     {/* favorite */}
-                    <div className="px-2 border border-transparent hover:border-white cursor-pointer duration-300 justify-center h-[70%] text-xs text-gray-100 flex flex-col">
+                    <Link href="" className="px-2 border border-transparent hover:border-white cursor-pointer duration-300 justify-center h-[70%] text-xs text-gray-100 flex flex-col relative">
                         <p>Marked</p>
                         <p className="text-white font-bold">& Favorite</p>
-                    </div>
+                        {
+                            favoriteData.length>0&&(
+                                <span className="absolute right-1.5 top-2 w-4 h-4 border-[1px] border-gray-400 flex items-center justify-center text-xs text-amazon_yellow ">{favoriteData.length}</span>
+                            )
+                        }
+                    </Link>
                     {/* cart */}
-                    <Link href="/cart">
-                        <div className="flex items-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 justify-center h-[70%] relative">
+                    <Link href="/cart" className=" px-2 border border-transparent hover:border-white cursor-pointer duration-300 flex items-center  h-[70%] relative">
                             <Image className="w-auto object-cover h-8" src={cartIcon} alt="cartImg" />
                             <p className="text-xs text-white font-bold mt-3">cart</p>
-                            <span className="absolute text-amazon_yellow text-sm top-0 left-[29px] font-semibold ">0</span>
-                        </div>
+                            <span className="absolute text-amazon_yellow text-sm top-2 left-[30px] font-semibold ">{productData?productData.length:0}</span>
                     </Link>
 
                 </div>

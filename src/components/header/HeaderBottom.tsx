@@ -1,15 +1,13 @@
 import { LuMenu } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuth, signOut } from "firebase/auth";
-import { userSignOut } from "@/redux/amazonSlice";
+import { userSignOut } from "@/redux/userSlice";
 import { useState } from "react";
-import { motion } from "framer-motion"
-
 
 const HeaderBottom = () => {
 
     const [message, setMessage] = useState("")
-    const userInfo = useSelector((state: any) => state.amazonReducer.userInfo)
+    const userInfo = useSelector((state: any) => state.userReducer.userInfo)
     const dispatch = useDispatch()
     const auth = getAuth()
 
@@ -47,20 +45,6 @@ const HeaderBottom = () => {
                     </p> : null
                 }
             </div>
-            {/* {
-                message ? (
-                    <div>
-                        <motion.p
-                            initial={{ y: 10, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ duration: 0.5 }}
-                            className="text-base font-semibold text-green-500 border-[1px]
-                            border-green-500 px-2 text-center"
-                        >{message}
-                        </motion.p>
-                    </div>
-                ) : null
-            } */}
         </div>
 
     )
