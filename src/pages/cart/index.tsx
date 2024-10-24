@@ -7,6 +7,7 @@ import Link from "next/link"
 import { useDispatch, useSelector } from "react-redux"
 
 const Cart = () => {
+    
     const { productData } = useSelector((state: StateProps) => state.productReducer)
     const dispatch = useDispatch()
     return (

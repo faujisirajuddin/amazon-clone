@@ -26,7 +26,6 @@ const CartProduct = ({ item }: cartProductProps) => {
 
     const dispatch = useDispatch()
 
-
     return (
         <div className="bg-gray-100 rounded-lg flex items-ceter gap-4">
             <Image
